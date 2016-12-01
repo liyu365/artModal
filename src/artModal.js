@@ -71,25 +71,22 @@
         }
     });
 
-
+    //根据属性名获取元素集合
     function getElementsByAttribute(attribute, attributeValue, queryElement) {
         var elementArray = [];
         var matchedArray = [];
         var qElement = document;
-
         if (typeof queryElement !== 'undefined') {
             qElement = queryElement;
         }
-
         if (qElement.all) {
             elementArray = qElement.all;
         } else {
             elementArray = qElement.getElementsByTagName("*");
         }
-
         for (var i = 0, len = elementArray.length; i < len; i++) {
             if (attribute == "class") {
-                var pattern = new RegExp("(^| )" + attributeValue + "( |$)");
+                var pattern = new RegExp("(\\s|^)" + attributeValue + "(\\s|$)");
                 if (pattern.test(elementArray[i].className)) {
                     matchedArray[matchedArray.length] = elementArray[i];
                 }
