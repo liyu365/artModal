@@ -81,13 +81,13 @@
             qElement = queryElement;
         }
 
-        if (document.all) {
+        if (qElement.all) {
             elementArray = qElement.all;
         } else {
             elementArray = qElement.getElementsByTagName("*");
         }
 
-        for (var i = 0; i < elementArray.length; i++) {
+        for (var i = 0, len = elementArray.length; i < len; i++) {
             if (attribute == "class") {
                 var pattern = new RegExp("(^| )" + attributeValue + "( |$)");
                 if (pattern.test(elementArray[i].className)) {
