@@ -9,24 +9,39 @@
 <body>
 
     <div class="wrapper">
-        <button data-toggle="artModal" data-target="#mymodal">BUTTON</button>
+        <button data-toggle="artModal" data-target="mymodal">BUTTON</button>
     </div>
     <div class="wrapper"></div>
     <div class="wrapper"></div>
     <div class="wrapper"></div>
     <div class="wrapper"></div>
     <div class="wrapper">
-        <button data-toggle="artModal" data-target="#mymodal">BUTTON</button>
+        <button data-toggle="artModal" data-target="mymodal">BUTTON</button>
     </div>
 
-    <div class="artModal" id="#mymodal">
+    <div class="artModal" id="mymodal">
         <div class="artModal-dialog">
             <div class="my_content">my_content<button data-dismiss="artModal"></button></div>
-            <div class="my_content">my_content</div>
+            <div class="my_content"><button data-toggle="artModal" data-target="mymodal2">再开</button></div>
             <div class="my_content">my_content</div>
         </div>
     </div>
 
+    <div class="artModal" id="mymodal2">
+        <div class="artModal-dialog">
+            <div class="my_content" style="background:red;">my_content<button data-dismiss="artModal"></button></div>
+            <div class="my_content" style="background:red;">my_content</div>
+            <div class="my_content" style="background:red;">my_content</div>
+        </div>
+    </div>
+
     <script src="../src/artModal.js"></script>
+    <script>
+        /*document.getElementById('btn2').onclick = function(){
+            artModal({
+                element:document.getElementById('mymodal2')
+            }).open();
+        }*/
+    </script>
 </body>
 </html>

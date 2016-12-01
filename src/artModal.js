@@ -52,7 +52,7 @@
         return new Dialog(options);
     };
 
-    attachEventListener(document.body, 'click', function (event) {
+    function bindEvent(event) {
         var e = event || window.event;
         var trigger = e.target || e.srcElement;
         while (trigger !== document.body && trim(trigger.getAttribute('data-toggle')) !== 'artModal') {
@@ -69,7 +69,19 @@
             });
             dialog.open();
         }
-    });
+    }
+    attachEventListener(document.body, 'click', bindEvent);
+    var artModal_dialog_elements = getElementsByAttribute('class', 'artModal-dialog');
+    for (var i = 0, len = artModal_dialog_elements.length; i < len; i++) {
+        (function (i) {
+            attachEventListener(artModal_dialog_elements[i], 'click', bindEvent);
+        })(i);
+    }
+
+
+    /**
+     * utils----------------------------------------------------------------------------------
+     */
 
     //根据属性名获取元素集合
     function getElementsByAttribute(attribute, attributeValue, queryElement) {
@@ -175,5 +187,15 @@
             //event.cancelBubble不能作为判定这个属性有无的表达式，因为event.cancelBubble的默认值就是false
             event.cancelBubble = true;  //IE6,7,8
         }
+    }
+
+    if (typeof define === 'function') {
+        define(function () {
+            return artModal;
+        });
+    } else if (typeof exports !== 'undefined') {
+        module.exports = artModal;
+    } else {
+        this.artModal = artModal;
     }
 })();
