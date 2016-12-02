@@ -1,4 +1,4 @@
-(function () {
+!(function () {
 
     var Dialog = function (options) {
         var _this = this;
@@ -40,12 +40,13 @@
         if (_this.check_backdrop() === 0) {
             var backdrop = document.createElement('div');
             addClass(backdrop, 'artModal-backdrop');
-            addClass(backdrop, 'fade');
+            if (hasClass(_this.opts.element, 'fade')) {
+                addClass(backdrop, 'fade');
+            }
             document.body.appendChild(backdrop);
             setTimeout(function () {
                 addClass(backdrop, 'in');
             }, 0);
-
         }
         if (_this.check_bodyNeedPaddingRight()) {
             document.body.style.paddingRight = "17px";
@@ -60,6 +61,7 @@
                 removeClass(artModal_backdrop_elements[i], 'in');
             }
         }
+        var time = hasClass(_this.opts.element, 'fade') ? 150 : 0;
         setTimeout(function () {
             _this.opts.element.style.display = "none";
             if (_this.check_artModal() === 0) {
@@ -70,7 +72,7 @@
                     artModal_backdrop_elements[i].parentNode.removeChild(artModal_backdrop_elements[i]);
                 }
             }
-        }, 150);
+        }, time);
     };
     Dialog.prototype.check_backdrop = function () {
         var backdrop_elements = getElementsByAttribute('class', 'artModal-backdrop');
