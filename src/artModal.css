@@ -1,9 +1,41 @@
 .artModal-open{overflow:hidden;}
-.artModal{display:none;position:fixed;top:0;right:0;bottom:0;left:0;overflow-x:hidden;overflow-y:auto;z-index:2050;
+.artModal{display:none;position:fixed;top:0;right:0;bottom:0;left:0;overflow-x:hidden;overflow-y:auto;z-index:2050;-webkit-overflow-scrolling: touch;
     _position:absolute; _top:expression(documentElement.scrollTop);
 }
 .artModal .artModal-dialog{position:relative;margin:30px auto;width:300px;}
-.artModal-backdrop{position:fixed;top:0;right:0;bottom:0;left:0;z-index:2040;background-color:#000000;opacity:0.15;
+
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity 0.15s linear;
+    -o-transition: opacity 0.15s linear;
+    transition: opacity 0.15s linear;
+}
+.fade.in {
+    opacity: 1;
+}
+
+.artModal.fade .artModal-dialog {
+    -webkit-transform: translate(0, -25%);
+    -ms-transform: translate(0, -25%);
+    -o-transform: translate(0, -25%);
+    transform: translate(0, -25%);
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+    -o-transition: -o-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+}
+.artModal.in .artModal-dialog {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+
+
+
+.artModal-backdrop{position:fixed;top:0;right:0;bottom:0;left:0;z-index:2040;background-color:#000000;
     _position:absolute; _top:expression(documentElement.scrollTop);
 }
+
+.artModal-backdrop.in{opacity:0.5 !important;filter:alpha(opacity=50);}
+.artModal-backdrop.fade{opacity: 0;filter: alpha(opacity=0);}
 

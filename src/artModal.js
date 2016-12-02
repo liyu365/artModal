@@ -31,13 +31,21 @@
     };
     Dialog.prototype.open = function () {
         var _this = this;
-        addClass(document.body, 'artModal-open');
         _this.opts.element.style.display = "block";
         _this.opts.element.scrollTop = 0;
+        setTimeout(function () {
+            addClass(_this.opts.element, 'in');
+        }, 0);
+        addClass(document.body, 'artModal-open');
         if (_this.check_backdrop() === 0) {
             var backdrop = document.createElement('div');
             addClass(backdrop, 'artModal-backdrop');
+            addClass(backdrop, 'fade');
             document.body.appendChild(backdrop);
+            setTimeout(function () {
+                addClass(backdrop, 'in');
+            }, 0);
+
         }
         if (_this.check_bodyNeedPaddingRight()) {
             document.body.style.paddingRight = "17px";
@@ -45,15 +53,24 @@
     };
     Dialog.prototype.close = function () {
         var _this = this;
-        _this.opts.element.style.display = "none";
-        if (_this.check_artModal() === 0) {
-            removeClass(document.body, 'artModal-open');
-            document.body.style.paddingRight = "0";
+        removeClass(_this.opts.element, 'in');
+        if (_this.check_artModal() === 1) {
             var artModal_backdrop_elements = getElementsByAttribute('class', 'artModal-backdrop');
             for (var i = 0, len = artModal_backdrop_elements.length; i < len; i++) {
-                artModal_backdrop_elements[i].parentNode.removeChild(artModal_backdrop_elements[i]);
+                removeClass(artModal_backdrop_elements[i], 'in');
             }
         }
+        setTimeout(function () {
+            _this.opts.element.style.display = "none";
+            if (_this.check_artModal() === 0) {
+                removeClass(document.body, 'artModal-open');
+                document.body.style.paddingRight = "0";
+                var artModal_backdrop_elements = getElementsByAttribute('class', 'artModal-backdrop');
+                for (var i = 0, len = artModal_backdrop_elements.length; i < len; i++) {
+                    artModal_backdrop_elements[i].parentNode.removeChild(artModal_backdrop_elements[i]);
+                }
+            }
+        }, 150);
     };
     Dialog.prototype.check_backdrop = function () {
         var backdrop_elements = getElementsByAttribute('class', 'artModal-backdrop');
