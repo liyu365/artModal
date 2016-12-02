@@ -34,18 +34,36 @@
         addClass(document.body, 'artModal-open');
         _this.opts.element.style.display = "block";
         _this.opts.element.scrollTop = 0;
-        var backdrop = document.createElement('div');
-        addClass(backdrop, 'artModal-backdrop');
-        document.body.appendChild(backdrop);
+        if (_this.check_backdrop() === 0) {
+            var backdrop = document.createElement('div');
+            addClass(backdrop, 'artModal-backdrop');
+            document.body.appendChild(backdrop);
+        }
     };
     Dialog.prototype.close = function () {
         var _this = this;
         _this.opts.element.style.display = "none";
-        removeClass(document.body, 'artModal-open');
-        var artModal_backdrop_elements = getElementsByAttribute('class', 'artModal-backdrop');
-        for (var i = 0, len = artModal_backdrop_elements.length; i < len; i++) {
-            artModal_backdrop_elements[i].parentNode.removeChild(artModal_backdrop_elements[i]);
+        if (_this.check_artModal() === 0) {
+            removeClass(document.body, 'artModal-open');
+            var artModal_backdrop_elements = getElementsByAttribute('class', 'artModal-backdrop');
+            for (var i = 0, len = artModal_backdrop_elements.length; i < len; i++) {
+                artModal_backdrop_elements[i].parentNode.removeChild(artModal_backdrop_elements[i]);
+            }
         }
+    };
+    Dialog.prototype.check_backdrop = function () {
+        var backdrop_elements = getElementsByAttribute('class', 'artModal-backdrop');
+        return backdrop_elements.length;
+    };
+    Dialog.prototype.check_artModal = function () {
+        var artModal_elements = getElementsByAttribute('class', 'artModal');
+        var opened_artModal_elements = [];
+        for (var i = 0, len = artModal_elements.length; i < len; i++) {
+            if (artModal_elements[i].style.display == 'block') {
+                opened_artModal_elements.push(artModal_elements[i]);
+            }
+        }
+        return opened_artModal_elements.length;
     };
 
     var artModal = function (options) {
@@ -70,6 +88,7 @@
             dialog.open();
         }
     }
+
     attachEventListener(document.body, 'click', bindEvent);
     var artModal_dialog_elements = getElementsByAttribute('class', 'artModal-dialog');
     for (var i = 0, len = artModal_dialog_elements.length; i < len; i++) {
