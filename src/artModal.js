@@ -39,12 +39,16 @@
             addClass(backdrop, 'artModal-backdrop');
             document.body.appendChild(backdrop);
         }
+        if (_this.check_bodyNeedPaddingRight()) {
+            document.body.style.paddingRight = "17px";
+        }
     };
     Dialog.prototype.close = function () {
         var _this = this;
         _this.opts.element.style.display = "none";
         if (_this.check_artModal() === 0) {
             removeClass(document.body, 'artModal-open');
+            document.body.style.paddingRight = "0";
             var artModal_backdrop_elements = getElementsByAttribute('class', 'artModal-backdrop');
             for (var i = 0, len = artModal_backdrop_elements.length; i < len; i++) {
                 artModal_backdrop_elements[i].parentNode.removeChild(artModal_backdrop_elements[i]);
@@ -64,6 +68,10 @@
             }
         }
         return opened_artModal_elements.length;
+    };
+    Dialog.prototype.check_bodyNeedPaddingRight = function () {
+        var _this = this;
+        return getViewportSize().w > 992 && _this.opts.element.scrollHeight > getViewportSize().h;
     };
 
     var artModal = function (options) {
@@ -205,6 +213,24 @@
         } else {
             //event.cancelBubble不能作为判定这个属性有无的表达式，因为event.cancelBubble的默认值就是false
             event.cancelBubble = true;  //IE6,7,8
+        }
+    }
+
+    //返回视口尺寸（window.innerWidth 包括页面的滚动条，其让方式获得视口宽度都不包括滚动条，媒体查询的尺寸侦听是包括滚动条的）
+    function getViewportSize(w) {
+        w = w || window;
+        //除了IE8和更早的版本以外
+        if (w.innerWidth != null) {
+            return {w: w.innerWidth, h: w.innerHeight};
+        } else {
+            var d = w.document;
+            //对标准模式下的IE（或其他浏览器）
+            if (document.compatMode == "CSS1Compat") {
+                return {w: d.documentElement.clientWidth, h: d.documentElement.clientHeight};
+            } else {
+                //对怪异模式下的浏览器
+                return {w: d.body.clientWidth, h: d.body.clientHeight};
+            }
         }
     }
 
