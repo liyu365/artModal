@@ -1,7 +1,7 @@
 body{padding:0;margin:0;background:#ededed;}
 body,button,input,select,textarea,table{font:16px/1.8 verdana,tahoma,Arial,\5FAE\8F6F\96C5\9ED1,\5B8B\4F53;}
 
-.page{width:700px;margin:0 auto;}
+.page{width:700px;margin:0 auto 60px;}
 .header{font-size:50px;text-align:center;font-weight:bold;padding-top:60px;color:#ef5141;border:0;}
 
 .card{padding:20px;margin-top:30px;background:#FFF;border:1px solid #d1d6db;border-radius:8px;}
