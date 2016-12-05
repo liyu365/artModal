@@ -3,6 +3,7 @@
     _position:absolute;_top:expression(documentElement.scrollTop);
 }
 .artModal .artModal-dialog{position:relative;margin:30px auto;}
+.artModal .artModal-dialog .artModal-content{position:relative;width:300px;margin:0 auto;}
 .fade{opacity:0;
     -webkit-transition:opacity 0.15s linear;
     -o-transition:opacity 0.15s linear;

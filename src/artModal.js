@@ -5,10 +5,10 @@
         var def_options = {};
         _this.opts = extend(def_options, options);
 
-        //阻止.artModal-dialog元素的click事件冒泡
-        var artModal_dialog = getElementsByAttribute('class', 'artModal-dialog', _this.opts.element)[0];
-        if (artModal_dialog !== null) {
-            artModal_dialog.onclick = function (event) {
+        //阻止.artModal-content元素的click事件冒泡
+        var artModal_content = getElementsByAttribute('class', 'artModal-content', _this.opts.element)[0];
+        if (artModal_content !== null) {
+            artModal_content.onclick = function (event) {
                 var e = event || window.event;
                 unPropagation(e);
             };
@@ -61,7 +61,10 @@
                 removeClass(artModal_backdrop_elements[i], 'in');
             }
         }
-        var time = hasClass(_this.opts.element, 'fade') ? 150 : 0;
+        var time = 0;
+        if('transition' in document.body.style && hasClass(_this.opts.element, 'fade')){
+            time = 150;
+        }
         setTimeout(function () {
             _this.opts.element.style.display = "none";
             if (_this.check_artModal() === 0) {
