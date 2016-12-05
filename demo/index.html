@@ -30,43 +30,118 @@
                 <li>与以往的弹窗插件不同，artModal不需要大量的js配置选项，用户仅需利用html、css就可以充分自由定制弹出框的所有外观。</li>
             </ol>
         </div>
+
         <div class="card">
             <h1 class="title">基础演示：</h1>
-            <pre><code class="html">&lt;button data-toggle=&quot;artModal&quot; data-target=&quot;mymodal&quot;&gt;BUTTON&lt;/button&gt;</code></pre>
-                <pre><code class="html">&lt;div class=&quot;artModal fade&quot; id=&quot;mymodal&quot;&gt;
-                    &lt;div class=&quot;artModal-dialog&quot;&gt;
-                    &lt;div class=&quot;my_content&quot;&gt;my_content&lt;button data-dismiss=&quot;artModal&quot;&gt;&lt;/button&gt;&lt;/div&gt;
-                    &lt;div class=&quot;my_content&quot;&gt;&lt;button data-toggle=&quot;artModal&quot; data-target=&quot;mymodal2&quot;&gt;再开&lt;/button&gt;&lt;/div&gt;
-                    &lt;/div&gt;
-                    &lt;/div&gt;</code></pre>
+<pre><code class="html">&lt;button data-toggle=&quot;artModal&quot; data-target=&quot;myModal_1&quot;&gt;基础演示&lt;/button&gt;</code></pre>
+<pre><code class="html">&lt;div class=&quot;artModal fade&quot; id=&quot;myModal_1&quot;&gt;
+    &lt;div class=&quot;artModal-dialog&quot;&gt;
+        &lt;div class=&quot;artModal-content&quot;&gt;
+            &lt;div class=&quot;custom_style&quot;&gt;
+                基础演示&lt;button data-dismiss=&quot;artModal&quot;&gt;关闭&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
             <button data-toggle="artModal" data-target="myModal_1">基础演示</button>
             <div class="tips">
-                <span style="color:red;">注意：</span><pre style="display:inline-block;margin:0;vertical-align: middle"><code class="html">&lt;div class=&quot;artModal-dialog&quot;&gt;</code></pre>
-                中的所有html和css都是交给用户自由定制的，artModal不会对其中的html和css有任何要求。
+                <span style="color:red;">注意：</span><pre style="display:inline-block;margin:0;vertical-align: middle"><code class="html">&lt;div class=&quot;artModal-content&quot;&gt;</code></pre>
+                元素中的所有html和css都是交给用户自由定制的，artModal不会对其中的html和css有任何要求。
             </div>
         </div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
+
         <div class="card">
+            <h1 class="title">去除过渡动画：</h1>
+<pre><code class="html">&lt;button data-toggle=&quot;artModal&quot; data-target=&quot;myModal_2&quot;&gt;去除过渡动画&lt;/button&gt;</code></pre>
+<pre><code class="html">&lt;div class=&quot;artModal&quot; id=&quot;myModal_2&quot;&gt;
+    &lt;div class=&quot;artModal-dialog&quot;&gt;
+        &lt;div class=&quot;artModal-content&quot;&gt;
+            &lt;div class=&quot;custom_style&quot;&gt;
+            去除过渡动画&lt;button data-dismiss=&quot;artModal&quot;&gt;关闭&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            <button data-toggle="artModal" data-target="myModal_2">去除过渡动画</button>
+            <div class="tips">和上面的例子相比，仅仅是去掉了.fade这个class。</div>
+        </div>
+
+        <div class="card">
+            <h1 class="title">模态框中的内容高度超出视口时</h1>
+            <button data-toggle="artModal" data-target="myModal_3">高度超出视口</button>
+            <div class="tips">无需做任何其他配置</div>
+        </div>
+
+        <div class="card">
+            <h1 class="title">多个模态框同时堆叠出现</h1>
+            <button data-toggle="artModal" data-target="myModal_4">高度超出视口</button>
+            <div class="tips">无需做任何其他配置</div>
+        </div>
+
+
+        <div class="card">
+            <h1 class="title">用js触发一个模态框</h1>
             <button data-toggle="artModal" data-target="mymodal">BUTTON</button>
         </div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
     </div>
 
     <div class="artModal fade" id="myModal_1">
         <div class="artModal-dialog">
             <div class="artModal-content">
                 <div class="custom_style">
-                    基础演示
-                    <button data-dismiss="artModal">关闭</button>
+                    基础演示<button data-dismiss="artModal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="artModal" id="myModal_2">
+        <div class="artModal-dialog">
+            <div class="artModal-content">
+                <div class="custom_style">
+                    高度超出视口<button data-dismiss="artModal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="artModal fade" id="myModal_3">
+        <div class="artModal-dialog">
+            <div class="artModal-content">
+                <div class="custom_style">
+                    很长~<button data-dismiss="artModal">关闭</button>
+                    <div class="content">content</div>
+                    <div class="content">content</div>
+                    <div class="content">content</div>
+                    <div class="content">content</div>
+                    <div class="content">content</div>
+                    <div class="content">content</div>
+                    <div class="content">content</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="artModal fade" id="myModal_4">
+        <div class="artModal-dialog">
+            <div class="artModal-content">
+                <div class="custom_style">
+                    多个模态框同时堆叠出现<button data-dismiss="artModal">关闭</button>
+                    <div class="content">
+                        <button data-toggle="artModal" data-target="myModal_5">再来一个</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="artModal fade" id="myModal_5">
+        <div class="artModal-dialog" style="margin-top:80px; !important;">
+            <div class="artModal-content" style="width:200px;">
+                <div class="custom_style">
+                    <div class="content">
+                        叠罗汉<button data-dismiss="artModal">关闭</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -120,10 +120,10 @@
     }
 
     attachEventListener(document.body, 'click', bindEvent);
-    var artModal_dialog_elements = getElementsByAttribute('class', 'artModal-dialog');
-    for (var i = 0, len = artModal_dialog_elements.length; i < len; i++) {
+    var artModal_content_elements = getElementsByAttribute('class', 'artModal-content');
+    for (var i = 0, len = artModal_content_elements.length; i < len; i++) {
         (function (i) {
-            attachEventListener(artModal_dialog_elements[i], 'click', bindEvent);
+            attachEventListener(artModal_content_elements[i], 'click', bindEvent);
         })(i);
     }
 
