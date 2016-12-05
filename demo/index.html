@@ -80,8 +80,18 @@
 
 
         <div class="card">
-            <h1 class="title">用js触发一个模态框</h1>
-            <button data-toggle="artModal" data-target="mymodal">BUTTON</button>
+            <h1 class="title">用javascript触发一个模态框</h1>
+            <div class="tips">例如，我们用javascript显示"基础演示"中的那个模态框</div>
+            <button id="btn">BUTTON</button>
+            <script>
+                var btn = document.getElementById('btn');
+                btn.onclick = function(){
+                    var myModal_1_obj = artModal({
+                        element:document.getElementById('myModal_1')
+                    });
+                    myModal_1_obj.open();
+                }
+            </script>
         </div>
     </div>
 
