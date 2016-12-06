@@ -83,43 +83,52 @@
             <h1 class="title">用javascript触发一个模态框</h1>
             <div class="tips">例如，我们用javascript显示"基础演示"中的那个模态框，并让它4秒钟后自动关闭</div>
 <pre><code class="html">&lt;button id=&quot;btn&quot;&gt;我只是一个普通的button&lt;/button&gt;</code></pre>
-<pre><code class="javascript">var btn = document.getElementById('btn');
-(function () {
-    var timer;
-    var btn = document.getElementById('btn');
-    btn.onclick = function () {
-        if (timer) {
-            clearTimeout(timer);
+<pre><code class="javascript">var timer;
+var btn = document.getElementById('btn');
+btn.onclick = function () {
+    var myModal_1_obj = artModal({  //构建artModal实例
+        element: document.getElementById('myModal_1'),
+        open: function () {
+            if (timer) {
+                clearTimeout(timer);
+            }
+            timer = setTimeout(function () {
+                myModal_1_obj.close();  //关闭
+            }, 4000);
+        },
+        close: function () {
+            if (timer) {
+                clearTimeout(timer);
+            }
         }
-        var myModal_1_obj = artModal({  //构建artModal实例
-            element: document.getElementById('myModal_1')
-        });
-        myModal_1_obj.open();  //显示
-        timer = setTimeout(function () {
-            myModal_1_obj.close();  //关闭
-        }, 4000);
-    }
-})();
+    });
+    myModal_1_obj.open();  //显示
+}
 </code></pre>
             <button id="btn">我只是一个普通的button</button>
 
             <script>
-                (function () {
-                    var timer;
-                    var btn = document.getElementById('btn');
-                    btn.onclick = function () {
-                        if (timer) {
-                            clearTimeout(timer);
+                var timer;
+                var btn = document.getElementById('btn');
+                btn.onclick = function () {
+                    var myModal_1_obj = artModal({  //构建artModal实例
+                        element: document.getElementById('myModal_1'),
+                        open: function () {
+                            if (timer) {
+                                clearTimeout(timer);
+                            }
+                            timer = setTimeout(function () {
+                                myModal_1_obj.close();  //关闭
+                            }, 4000);
+                        },
+                        close: function () {
+                            if (timer) {
+                                clearTimeout(timer);
+                            }
                         }
-                        var myModal_1_obj = artModal({  //构建artModal实例
-                            element: document.getElementById('myModal_1')
-                        });
-                        myModal_1_obj.open();  //显示
-                        timer = setTimeout(function () {
-                            myModal_1_obj.close();  //关闭
-                        }, 4000);
-                    }
-                })();
+                    });
+                    myModal_1_obj.open();  //显示
+                }
             </script>
         </div>
     </div>

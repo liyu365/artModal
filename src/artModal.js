@@ -31,6 +31,9 @@
     };
     Dialog.prototype.open = function () {
         var _this = this;
+        if (typeof _this.opts.open === 'function') {
+            _this.opts.open.apply(_this);
+        }
         var zIndex = parseInt(retrieveComputedStyle(_this.opts.element, 'zIndex'));
         if (artModal.init_zIndex === null) {
             artModal.init_zIndex = zIndex;
@@ -63,6 +66,9 @@
     };
     Dialog.prototype.close = function () {
         var _this = this;
+        if (typeof _this.opts.close === 'function') {
+            _this.opts.close.apply(_this);
+        }
         removeClass(_this.opts.element, 'in');
         if (_this.check_artModal() === 1) {
             var artModal_backdrop_elements = getElementsByAttribute('class', 'artModal-backdrop');
@@ -199,7 +205,7 @@
     }
 
     //去掉字符串首尾空格
-    function trim (str) {
+    function trim(str) {
         if (typeof str !== 'string') {
             return '';
         }
