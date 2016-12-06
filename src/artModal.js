@@ -31,6 +31,15 @@
     };
     Dialog.prototype.open = function () {
         var _this = this;
+        var zIndex = parseInt(retrieveComputedStyle(_this.opts.element, 'zIndex'));
+        if (artModal.init_zIndex === null) {
+            artModal.init_zIndex = zIndex;
+        }
+        var opened_num = _this.check_artModal();
+        if (opened_num >= 1) {
+            zIndex += opened_num;
+            _this.opts.element.style.zIndex = zIndex;
+        }
         _this.opts.element.style.display = "block";
         _this.opts.element.scrollTop = 0;
         setTimeout(function () {
@@ -62,11 +71,12 @@
             }
         }
         var time = 0;
-        if('transition' in document.body.style && hasClass(_this.opts.element, 'fade')){
+        if ('transition' in document.body.style && hasClass(_this.opts.element, 'fade')) {
             time = 150;
         }
         setTimeout(function () {
             _this.opts.element.style.display = "none";
+            _this.opts.element.style.zIndex = artModal.init_zIndex;
             if (_this.check_artModal() === 0) {
                 removeClass(document.body, 'artModal-open');
                 document.body.style.paddingRight = "0";
@@ -99,6 +109,8 @@
     var artModal = function (options) {
         return new Dialog(options);
     };
+
+    artModal.init_zIndex = null;   //用来记录.artModal的z-index初始值
 
     function bindEvent(event) {
         var e = event || window.event;
@@ -187,12 +199,12 @@
     }
 
     //去掉字符串首尾空格
-    var trim = function (str) {
+    function trim (str) {
         if (typeof str !== 'string') {
             return '';
         }
         return str.replace(/^\s*|\s*$/g, '');
-    };
+    }
 
     //操作class
     function hasClass(elements, cName) {
@@ -254,6 +266,18 @@
                 return {w: d.body.clientWidth, h: d.body.clientHeight};
             }
         }
+    }
+
+    //获取元素的计算样式
+    function retrieveComputedStyle(element, styleProperty) {
+        var computedStyle = null;
+        if (typeof element.currentStyle != "undefined") {
+            computedStyle = element.currentStyle; //IE6,7,8
+        }
+        else {
+            computedStyle = document.defaultView.getComputedStyle(element, null);  //标准
+        }
+        return computedStyle[styleProperty];
     }
 
     if (typeof define === 'function') {
