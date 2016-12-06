@@ -103,7 +103,7 @@
     };
     Dialog.prototype.check_bodyNeedPaddingRight = function () {
         var _this = this;
-        return getViewportSize().w > 992 /*&& _this.opts.element.scrollHeight > getViewportSize().h*/;
+        return getViewportSize().w > 992 && document.body.scrollHeight > getViewportSize().h;
     };
 
     var artModal = function (options) {
