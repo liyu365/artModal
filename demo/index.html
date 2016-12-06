@@ -67,20 +67,20 @@
         </div>
 
         <div class="card">
-            <h1 class="title">模态框中的内容高度超出视口时</h1>
+            <h1 class="title">模态框中的内容高度超出视口时：</h1>
             <button data-toggle="artModal" data-target="myModal_3">高度超出视口</button>
-            <div class="tips">无需做任何其他配置</div>
+            <div class="tips">无需做任何其他配置。</div>
         </div>
 
         <div class="card">
-            <h1 class="title">多个模态框同时堆叠出现</h1>
+            <h1 class="title">多个模态框同时堆叠出现：</h1>
             <button data-toggle="artModal" data-target="myModal_4">堆叠出现</button>
-            <div class="tips">无需做任何其他配置</div>
+            <div class="tips">无需做任何其他配置。</div>
         </div>
 
 
         <div class="card">
-            <h1 class="title">用javascript触发一个模态框</h1>
+            <h1 class="title">用javascript触发一个模态框：</h1>
             <div class="tips">例如，我们用javascript显示"基础演示"中的那个模态框，并让它4秒钟后自动关闭</div>
 <pre><code class="html">&lt;button id=&quot;btn&quot;&gt;我只是一个普通的button&lt;/button&gt;</code></pre>
 <pre><code class="javascript">var timer;
@@ -130,6 +130,19 @@ btn.onclick = function () {
                     myModal_1_obj.open();  //显示
                 }
             </script>
+            <div class="tips">
+                artModal可接收三个参数：
+                <ul>
+                    <li>element：模态框对应的dom对象，必须</li>
+                    <li>open：模态框显示时执行的回调函数，可选</li>
+                    <li>close：模态框关闭时执行的回调函数，可选</li>
+                </ul>
+                artModal实例公开的两个方法：
+                <ul>
+                    <li>open()：显示模态框</li>
+                    <li>close()：关闭模态框</li>
+                </ul>
+            </div>
         </div>
     </div>
 
