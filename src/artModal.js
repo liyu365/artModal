@@ -137,12 +137,24 @@
         }
     }
 
-    attachEventListener(document.body, 'click', bindEvent);
-    var artModal_content_elements = getElementsByAttribute('class', 'artModal-content');
-    for (var i = 0, len = artModal_content_elements.length; i < len; i++) {
-        (function (i) {
-            attachEventListener(artModal_content_elements[i], 'click', bindEvent);
-        })(i);
+    function startListen() {
+        attachEventListener(document.body, 'click', bindEvent);
+        var artModal_content_elements = getElementsByAttribute('class', 'artModal-content');
+        for (var i = 0, len = artModal_content_elements.length; i < len; i++) {
+            (function (i) {
+                attachEventListener(artModal_content_elements[i], 'click', bindEvent);
+            })(i);
+        }
+    }
+
+    if (typeof document.addEventListener !== 'undefined') {
+        document.addEventListener('DOMContentLoaded', function () {
+            startListen();
+        });
+    } else {
+        window.onload = function () {
+            startListen();
+        }
     }
 
 
