@@ -1,6 +1,6 @@
 # artModal,一个兼容移动端的模态框插件
 
-### [项目主页](https://liyu365.github.io/artModal/demo/) 
+### :point_right: [项目主页](https://liyu365.github.io/artModal/demo/) 
 
 1.artModal是一个兼容移动端的模态框插件。
 
