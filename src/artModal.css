@@ -1,6 +1,6 @@
 .artModal-open{overflow:hidden;}
 .artModal{display:none;position:fixed;top:0;right:0;bottom:0;left:0;overflow-x:hidden;overflow-y:auto;z-index:2050;-webkit-overflow-scrolling:touch;
-    _position:absolute;_top:expression(documentElement.scrollTop);
+    _position:absolute;_top:expression(documentElement.scrollTop);_width:expression(documentElement.clientWidth);_height:expression(documentElement.clientHeight);
 }
 .artModal .artModal-dialog{position:relative;margin:30px auto;}
 .artModal .artModal-dialog .artModal-content{position:relative;width:300px;margin:0 auto;}
@@ -26,7 +26,7 @@
     transform:translate(0, 0);
 }
 .artModal-backdrop{position:fixed;top:0;right:0;bottom:0;left:0;z-index:2040;background-color:#000000;opacity:0.5;filter:alpha(opacity=50);
-    _position:absolute;_top:expression(documentElement.scrollTop);
+    _position:absolute;_top:expression(documentElement.scrollTop);_width:expression(documentElement.clientWidth);_height:expression(documentElement.clientHeight);
 }
 .artModal-backdrop.fade{opacity:0;filter:alpha(opacity=0);}
 .artModal-backdrop.in{opacity:0.5 !important;filter:alpha(opacity=50);}
