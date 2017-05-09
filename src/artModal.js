@@ -123,7 +123,7 @@
         var trigger = e.target || e.srcElement;
         while (trigger !== document.body && trim(trigger.getAttribute('data-toggle')) !== 'artModal') {
             trigger = trigger.parentNode;
-            if (trigger === document.body) {
+            if (trigger === document.body || !trigger) {
                 trigger = null;
                 break;
             }
