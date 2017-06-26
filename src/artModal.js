@@ -2,7 +2,9 @@
 
     var Dialog = function (options) {
         var _this = this;
-        var def_options = {};
+        var def_options = {
+            position: 'middle'
+        };
         _this.opts = extend(def_options, options);
 
         //阻止.artModal-content元素的click事件冒泡
@@ -42,13 +44,29 @@
         _this.opts.element.style.zIndex = zIndex;
         _this.opts.element.style.display = "block";
         _this.opts.element.scrollTop = 0;
+
+        var artModal_dialog = getElementsByAttribute('class', 'artModal-dialog', _this.opts.element)[0];
+        if (_this.opts.position == 'middle') {
+            var marginTop = Math.floor(getViewportSize().h * 0.38 - artModal_dialog.scrollHeight / 2);
+            artModal_dialog.style.marginTop = (marginTop < 30 ? 30 : marginTop) + 'px';
+        } else if (_this.opts.position == 'bottom' && artModal_dialog.scrollHeight <= getViewportSize().h) {
+            artModal_dialog.style.position = 'absolute';
+            artModal_dialog.style.left = '50%';
+            artModal_dialog.style.marginLeft = '-' + (artModal_dialog.scrollWidth / 2) + 'px';
+            artModal_dialog.style.bottom = '30px';
+        } else if (_this.opts.position == 'top') {
+            artModal_dialog.style.marginTop = '30px';
+        } else if (typeof _this.opts.position === 'number') {
+            artModal_dialog.style.marginTop = _this.opts.position + 'px';
+        }
+
         setTimeout(function () {
             addClass(_this.opts.element, 'in');
         }, 0);
         addClass(document.body, 'artModal-open');
         if (_this.check_backdrop() === 0) {
             var backdrop = document.createElement('div');
-            backdrop.style.zIndex = artModal.init_zIndex -1;
+            backdrop.style.zIndex = artModal.init_zIndex - 1;
             addClass(backdrop, 'artModal-backdrop');
             if (hasClass(_this.opts.element, 'fade')) {
                 addClass(backdrop, 'fade');
@@ -80,6 +98,9 @@
         }
         setTimeout(function () {
             _this.opts.element.style.display = "none";
+            var artModal_dialog = getElementsByAttribute('class', 'artModal-dialog', _this.opts.element)[0];
+            artModal_dialog.style.position = 'static';
+            artModal_dialog.style.margin = '0 auto';
             if (_this.check_artModal() === 0) {
                 removeClass(document.body, 'artModal-open');
                 document.body.style.paddingRight = "0";
@@ -158,6 +179,24 @@
     /**
      * utils----------------------------------------------------------------------------------
      */
+
+    //返回视口尺寸
+    function getViewportSize(w) {
+        w = w || window;
+        //除了IE8和更早的版本以外
+        if (w.innerWidth != null) {
+            return {w: w.innerWidth, h: w.innerHeight};
+        } else {
+            var d = w.document;
+            //对标准模式下的IE（或其他浏览器）
+            if (document.compatMode == "CSS1Compat") {
+                return {w: d.documentElement.clientWidth, h: d.documentElement.clientHeight};
+            } else {
+                //对怪异模式下的浏览器
+                return {w: d.body.clientWidth, h: d.body.clientHeight};
+            }
+        }
+    }
 
     //根据属性名获取元素集合
     function getElementsByAttribute(attribute, attributeValue, queryElement) {

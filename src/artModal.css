@@ -2,7 +2,7 @@
 .artModal{display:none;position:fixed;top:0;right:0;bottom:0;left:0;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;-webkit-tap-highlight-color:rgba(0,0,0,0);
     _position:absolute;_top:expression(documentElement.scrollTop);_width:expression(documentElement.clientWidth);_height:expression(documentElement.clientHeight);
 }
-.artModal .artModal-dialog{position:relative;margin:30px auto;}
+.artModal .artModal-dialog{position:relative;margin:0 auto;}
 .artModal .artModal-dialog .artModal-content{position:relative;width:300px;margin:0 auto;}
 .fade{opacity:0;
     -webkit-transition:opacity 0.15s linear;

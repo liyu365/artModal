@@ -92,8 +92,8 @@
 
 
         <div class="card">
-            <h1 class="title">用javascript触发一个模态框：</h1>
-            <div class="tips">例如，我们用javascript显示"基础演示"中的那个模态框，并让它4秒钟后自动关闭</div>
+            <h1 class="title">用javascript主动创建一个模态框实例：</h1>
+            <div class="tips">可以利用js主动创建一个模态框实例，这样做实例可以接收更多的配置参数。<br/>例如，我们用javascript让"基础演示"中的那个模态框在页面最下方显示，并让它4秒钟后自动关闭</div>
 <pre><code class="html">&lt;button id=&quot;btn&quot;&gt;我只是一个普通的button&lt;/button&gt;</code></pre>
 <pre><code class="javascript">var timer;
 var btn = document.getElementById('btn');
@@ -112,7 +112,8 @@ btn.onclick = function () {
             if (timer) {
                 clearTimeout(timer);
             }
-        }
+        },
+        position: 'bottom'
     });
     myModal_1_obj.open();  //显示
 }
@@ -137,7 +138,8 @@ btn.onclick = function () {
                             if (timer) {
                                 clearTimeout(timer);
                             }
-                        }
+                        },
+                        position: 'bottom'
                     });
                     myModal_1_obj.open();  //显示
                 }
@@ -145,14 +147,15 @@ btn.onclick = function () {
             <div class="tips">
                 artModal可接收三个参数：
                 <ul>
-                    <li>element：模态框对应的dom对象，必须</li>
-                    <li>open：模态框显示时执行的回调函数，可选</li>
-                    <li>close：模态框关闭时执行的回调函数，可选</li>
+                    <li>element：模态框对应的dom对象，必须。</li>
+                    <li>position：模态框在页面中出现的位置，可选值为'top'|'middle'|'bottom'|'距页面顶端的具体数值'，默认值为'middle'。</li>
+                    <li>open：模态框显示时执行的回调函数，可选。</li>
+                    <li>close：模态框关闭时执行的回调函数，可选。</li>
                 </ul>
                 artModal实例公开的两个方法：
                 <ul>
-                    <li>open()：显示模态框</li>
-                    <li>close()：关闭模态框</li>
+                    <li>open()：显示模态框。</li>
+                    <li>close()：关闭模态框。</li>
                 </ul>
             </div>
         </div>
@@ -210,7 +213,7 @@ btn.onclick = function () {
     </div>
 
     <div class="artModal fade" id="myModal_5">
-        <div class="artModal-dialog" style="margin-top:80px; !important;">
+        <div class="artModal-dialog">
             <div class="artModal-content" style="width:200px;">
                 <div class="custom_style">
                     <div class="content">
